@@ -120,43 +120,6 @@ collaborative-whiteboard/
 └── README.md
 ```
 
-## Deployment
-
-### Deploying to Heroku
-
-1. Create a Heroku account and install the Heroku CLI
-2. Login to Heroku:
-```bash
-heroku login
-```
-
-3. Create a new Heroku app:
-```bash
-heroku create your-whiteboard-app-name
-```
-
-4. Push to Heroku:
-```bash
-git push heroku main
-```
-
-5. Open the deployed app:
-```bash
-heroku open
-```
-
-### Deploying to Vercel
-
-1. Install Vercel CLI:
-```bash
-npm install -g vercel
-```
-
-2. Deploy:
-```bash
-vercel
-```
-
 ## Contributing
 
 1. Fork the repository
@@ -176,9 +139,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Contact
 
-Your Name - your.email@example.com
+Your Name - vikash.my022@gmail.com
 
-Project Link: [https://github.com/yourusername/collaborative-whiteboard](https://github.com/yourusername/collaborative-whiteboard)
+Project Link: [https://github.com/itzvikash022/Collaborative_Whiteboard]
 
 ---
 
