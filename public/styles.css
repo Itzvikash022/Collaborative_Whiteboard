@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.room-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #4285f4;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3367d6;
+}
+
+.join-room {
+    display: flex;
+    gap: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+#roomInfo {
+    padding: 20px;
+    background-color: #f0f8ff;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+#roomIdDisplay {
+    font-weight: bold;
+    color: #4285f4;
+}
+
+/* Whiteboard Styles */
+.whiteboard-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.toolbar {
+    display: flex;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.tool-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.tool {
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    background-color: #555;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.tool.active {
+    background-color: #4285f4;
+}
+
+.tool:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.tooltip {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-size: 12px;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+    z-index: 10;
+}
+
+.icon {
+    font-size: 18px;
+}
+
+.canvas-container {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+    background-color: white;
+}
+
+#whiteboard {
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: crosshair;
+}
+
+#textInputContainer {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+#textInput {
+    width: 200px;
+    height: 100px;
+    padding: 5px;
+    margin-bottom: 10px;
+    resize: both;
+}
+
+.color-picker input, .thickness-control input {
+    cursor: pointer;
+}
+
+.room-info {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #555;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#userCursors {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 50;
+}
+
+.user-cursor {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+.user-cursor::before {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-bottom: 20px solid;
+    transform: rotate(135deg);
+}
+
+.user-cursor::after {
+    content: attr(data-user-id);
+    position: absolute;
+    top: 20px;
+    left: 0;
+    background-color: inherit;
+    color: white;
+    padding: 2px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .toolbar {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .tool-group {
+        justify-content: center;
+    }
+    .room-info {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* Animation for cursor appearance */
+@keyframes cursorFade {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.user-cursor {
+    animation: cursorFade 0.3s ease-in-out;
+}
+
+/* Style for text elements on canvas */
+.canvas-text {
+    position: absolute;
+    pointer-events: none;
+    user-select: none;
+}
+
+/* Style for shape preview */
+.shape-preview {
+    position: absolute;
+    border: 1px dashed #4285f4;
+    pointer-events: none;
+    z-index: 40;
+}
